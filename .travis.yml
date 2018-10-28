@@ -11,7 +11,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $onedot-demo-travis
+  github_token: $onedotdemotravis
   local_dir: build
   on:
     branch: master
