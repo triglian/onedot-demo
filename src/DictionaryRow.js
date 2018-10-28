@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
 const DictionaryRow = props => {
-  const { classes, row, idx } = props;
+  const { row, idx } = props;
   return (
     <TableRow key={row.uid}>
       <TableCell component="th" scope="row">
@@ -14,10 +13,6 @@ const DictionaryRow = props => {
       <TableCell>{row.range}</TableCell>
     </TableRow>
   );
-};
-
-DictionaryRow.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 export default DictionaryRow;
