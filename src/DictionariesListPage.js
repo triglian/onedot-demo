@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
-import DictionariesTable from './DictionariesTable';
 import { withStyles } from '@material-ui/core/styles';
+import DictionariesTable from './DictionariesTable';
 
 const mapStateToProps = state => ({
   dictionaries: state.dictionaries
@@ -27,6 +28,8 @@ const DictionaryListPage = props => {
       <DictionariesTable rows={props.dictionaries} />
       <Tooltip title="Create a new dictionary">
         <Button
+          component={ Link }
+          to="/create"
           variant="fab"
           color="primary"
           aria-label="Add"

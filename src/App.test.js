@@ -14,7 +14,7 @@ describe('<App />', () => {
   describe('routing', () => {
     it('has the all the routes', () => {
       const wrapper = shallow(<App />);
-      expect(wrapper.find('Route')).toHaveLength(4);
+      expect(wrapper.find('Route')).toHaveLength(6);
     });
   });
 });

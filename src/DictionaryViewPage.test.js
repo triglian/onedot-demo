@@ -18,7 +18,7 @@ const match = {
   }
 };
 
-const dictionary = describe('<DictionaryViewPage />', () => {
+describe('<DictionaryViewPage />', () => {
   describe('render()', () => {
     let shallow;
 
