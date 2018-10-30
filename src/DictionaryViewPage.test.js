@@ -8,7 +8,10 @@ import dictionaryData from './data/dictionaryData';
 
 const mockStore = configureStore();
 const initialState = {
-  dictionaries: dictionaryData
+  dictionaries: dictionaryData,
+  validatedDictionary: {
+    validationErrors: []
+  }
 };
 const store = mockStore(initialState);
 
@@ -57,9 +60,6 @@ describe('<DictionaryViewPage />', () => {
       );
       const editButton = wrapper.find('WithStyles(IconButton)[aria-label="Edit"]')
       expect(editButton.props().to).toEqual(`/edit/${dictionaryData[0].uid}`);
-
-      const deleteButton = wrapper.find('WithStyles(IconButton)[aria-label="Delete"]')
-      expect(deleteButton.props().to).toEqual(`/delete/${dictionaryData[0].uid}`);
     });
   });
 });
