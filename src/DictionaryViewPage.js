@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateDictionary, validateDictionary } from './actions/';
+import { validateDictionary } from './actions/';
 import PropTypes from 'prop-types';
 import HomeButton from './HomeButton';
 import DictionaryDeleteDialog from './DictionaryDeleteDialog';
