@@ -35,7 +35,6 @@ const mapDispatchToProps = dispatch =>
 
 const styles = theme => ({
   defaultButton: {
-    // backgroundColor: theme.palette.primary.contrastText,
     margin: theme.spacing.unit
   },
   validateButton: {

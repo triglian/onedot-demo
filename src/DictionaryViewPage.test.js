@@ -59,7 +59,7 @@ describe('<DictionaryViewPage />', () => {
         <DictionaryViewPage store={store} match={match} />
       );
       const editButton = wrapper.find('WithStyles(IconButton)[aria-label="Edit"]')
-      expect(editButton.props().to).toEqual(`/edit/${dictionaryData[0].uid}`);w
+      expect(editButton.props().to).toEqual(`/edit/${dictionaryData[0].uid}`);
     });
   });
 });
