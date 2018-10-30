@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { validateDictionary } from './actions/';
+import { clearValidatedDictionary, validateDictionary } from './actions/';
 import PropTypes from 'prop-types';
 import HomeButton from './HomeButton';
 import DictionaryDeleteDialog from './DictionaryDeleteDialog';
@@ -18,9 +18,7 @@ import './DictionaryViewPage.css';
 
 const mapStateToProps = (state, ownProps) => ({
   dictionary: _.find(
-    state.dictionaries,
-    'uid',
-    ownProps.match.params.dictionaryid
+    state.dictionaries, { uid: ownProps.match.params.dictionaryid }
   ),
   cErrorsPerRow: state.validatedDictionary.validationErrors
 });
@@ -28,6 +26,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      clearValidatedDictionary,
       validateDictionary
     },
     dispatch
@@ -54,6 +53,7 @@ class DictionaryViewPage extends Component {
   }
 
   componentWillUnmount(){
+    this.props.clearValidatedDictionary();
     clearTimeout(this.timeoutId);
   }
 
@@ -84,7 +84,7 @@ class DictionaryViewPage extends Component {
               color="secondary"
               className={this.props.classes.validateButton}
               onClick={ () => {
-                validateDictionary(this.props.dictionary);
+                this.props.validateDictionary(this.props.dictionary);
                 this.setState({isDisplayingConsistencyErrors: true})
               }}
             >

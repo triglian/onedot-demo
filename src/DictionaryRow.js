@@ -10,7 +10,7 @@ const DictionaryRow = ({
   cErrors
 }) => {
   return (
-    <TableRow key={row.uid}>
+    <TableRow>
       <TableCell component="th" scope="row">
         {idx}
       </TableCell>
@@ -20,9 +20,7 @@ const DictionaryRow = ({
         <TableCell>
           <SeverityErrorsList errors={cErrors} />
         </TableCell>
-      ) : (
-        ''
-      )}
+      ) : null}
     </TableRow>
   );
 };

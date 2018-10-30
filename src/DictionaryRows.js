@@ -29,7 +29,7 @@ const DictionaryRows = ({ classes, rows, isDisplayingConsistencyErrors, cErrorsP
             <TableCell>#</TableCell>
             <TableCell>Domain</TableCell>
             <TableCell>Range</TableCell>
-            {isDisplayingConsistencyErrors ? <TableCell>Consistency Errors</TableCell> : ''}
+            {isDisplayingConsistencyErrors ? <TableCell>Consistency Errors</TableCell> : null}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -37,7 +37,7 @@ const DictionaryRows = ({ classes, rows, isDisplayingConsistencyErrors, cErrorsP
             return (
               <DictionaryRow row={row}
                 idx={idx + 1}
-                key={row.uid}
+                key={idx}
                 isDisplayingConsistencyErrors={isDisplayingConsistencyErrors}
                 cErrors={cErrorsPerRow[idx] || []}
                />

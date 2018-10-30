@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateDictionary, validateDictionary } from './actions/';
+import { updateDictionary, validateDictionary, clearValidatedDictionary } from './actions/';
 import { Formik, Form, FieldArray, getIn } from 'formik';
 import { withRouter } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -56,13 +56,20 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       updateDictionary,
+      clearValidatedDictionary,
       validateDictionary
     },
     dispatch
   );
 
-const EditDictionaryForm = withRouter(
-  ({ classes, dictionary, updateDictionary, validateDictionary, history, cErrorsPerRow }) => {
+class EditDictionaryForm extends Component {
+  
+  componentWillUnmount(){
+    this.props.clearValidatedDictionary();
+  }
+
+  render(){  
+    const { classes, dictionary, updateDictionary, validateDictionary, history, cErrorsPerRow } = this.props;
     return (
       <Formik
         initialValues={dictionary}
@@ -230,7 +237,7 @@ const EditDictionaryForm = withRouter(
       />
     );
   }
-);
+}
 
 EditDictionaryForm.propTypes = {
   classes: PropTypes.object.isRequired
@@ -239,4 +246,4 @@ EditDictionaryForm.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(EditDictionaryForm));
+)(withStyles(styles)(withRouter(EditDictionaryForm)));

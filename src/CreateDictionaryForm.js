@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addDictionary, validateDictionary } from './actions/';
-import { Formik, Form, FieldArray, getIn } from 'formik';
 import { withRouter } from 'react-router-dom';
+import { addDictionary,
+  clearValidatedDictionary,
+  validateDictionary
+} from './actions/';
+import { Formik, Form, FieldArray, getIn } from 'formik';
 import * as Yup from 'yup';
 import uniqid from 'uniqid';
 import TextField from '@material-ui/core/TextField';
@@ -57,13 +60,22 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       addDictionary,
+      clearValidatedDictionary,
       validateDictionary
     },
     dispatch
   );
 
-const CreateDictionaryForm = withRouter(
-  ({ classes, addDictionary, validateDictionary, history, cErrorsPerRow }) => {
+
+class CreateDictionaryForm extends Component {
+  
+  componentWillUnmount(){
+    this.props.clearValidatedDictionary();
+  }
+
+  render(){  
+    const { classes, addDictionary, validateDictionary, history, cErrorsPerRow } = this.props;
+    
     return (
       <Formik
         initialValues={{
@@ -232,7 +244,7 @@ const CreateDictionaryForm = withRouter(
       />
     );
   }
-);
+}
 
 CreateDictionaryForm.propTypes = {
   classes: PropTypes.object.isRequired
@@ -241,4 +253,4 @@ CreateDictionaryForm.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(CreateDictionaryForm));
+)(withStyles(styles)(withRouter(CreateDictionaryForm)));

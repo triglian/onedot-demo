@@ -7,9 +7,7 @@ import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => ({
   dictionary: _.find(
-    state.dictionaries,
-    'uid',
-    ownProps.match.params.dictionaryid
+    state.dictionaries, { uid: ownProps.match.params.dictionaryid }
   )
 });
 
